@@ -25,7 +25,6 @@ Export-ModuleMember `
         'Get-GitDirectory',
         'TabExpansion',
         'Get-AliasPattern',
-        'Get-SshAgent',
         'Start-SshAgent',
         'Stop-SshAgent',
         'Add-SshKey',

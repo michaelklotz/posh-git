@@ -14,13 +14,19 @@ function prompt {
 
     # Reset color, which can be messed up by Enable-GitColors
     $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+$global:LINE=$global:LINE + 1
+    Write-Host "    Time: "$(get-date) `($($global:LINE)`) `n -foregroundcolor "Yellow"
+    
+    $p = Split-Path -leaf -path (Get-Location)
+ 
 
-    Write-Host($pwd.ProviderPath) -nonewline
+    Write-Host($p) -nonewline -foregroundcolor "Gray"
 
     Write-VcsStatus
 
     $global:LASTEXITCODE = $realLASTEXITCODE
-    return "> "
+    
+    return " > "
 }
 
 Enable-GitColors

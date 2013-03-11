@@ -2,40 +2,40 @@
 # http://www.markembling.info/view/my-ideal-powershell-prompt-with-git-integration
 
 $global:GitPromptSettings = New-Object PSObject -Property @{
-    DefaultForegroundColor    = $Host.UI.RawUI.ForegroundColor
-
+    #DefaultForegroundColor    = $Host.UI.RawUI.ForegroundColor
+    DefaultForegroundColor    = 'White'
     BeforeText                = ' ['
-    BeforeForegroundColor     = [ConsoleColor]::Yellow
+    BeforeForegroundColor     = [ConsoleColor]::Green
     BeforeBackgroundColor     = $Host.UI.RawUI.BackgroundColor
     DelimText                 = ' |'
-    DelimForegroundColor      = [ConsoleColor]::Yellow
+    DelimForegroundColor      = [ConsoleColor]::Green
     DelimBackgroundColor      = $Host.UI.RawUI.BackgroundColor
 
     AfterText                 = ']'
-    AfterForegroundColor      = [ConsoleColor]::Yellow
+    AfterForegroundColor      = [ConsoleColor]::Green
     AfterBackgroundColor      = $Host.UI.RawUI.BackgroundColor
 
     BranchForegroundColor       = [ConsoleColor]::Cyan
     BranchBackgroundColor       = $Host.UI.RawUI.BackgroundColor
     BranchAheadForegroundColor  = [ConsoleColor]::Green
     BranchAheadBackgroundColor  = $Host.UI.RawUI.BackgroundColor
-    BranchBehindForegroundColor = [ConsoleColor]::Red
+    BranchBehindForegroundColor = [ConsoleColor]::Magenta
     BranchBehindBackgroundColor = $Host.UI.RawUI.BackgroundColor
     BranchBehindAndAheadForegroundColor = [ConsoleColor]::Yellow
     BranchBehindAndAheadBackgroundColor = $Host.UI.RawUI.BackgroundColor
 
     BeforeIndexText           = ""
-    BeforeIndexForegroundColor= [ConsoleColor]::DarkGreen
+    BeforeIndexForegroundColor= [ConsoleColor]::Green
     BeforeIndexBackgroundColor= $Host.UI.RawUI.BackgroundColor
 
-    IndexForegroundColor      = [ConsoleColor]::DarkGreen
+    IndexForegroundColor      = [ConsoleColor]::Green
     IndexBackgroundColor      = $Host.UI.RawUI.BackgroundColor
 
-    WorkingForegroundColor    = [ConsoleColor]::DarkRed
+    WorkingForegroundColor    = [ConsoleColor]::Magenta
     WorkingBackgroundColor    = $Host.UI.RawUI.BackgroundColor
 
     UntrackedText             = ' !'
-    UntrackedForegroundColor  = [ConsoleColor]::DarkRed
+    UntrackedForegroundColor  = [ConsoleColor]::Magenta
     UntrackedBackgroundColor  = $Host.UI.RawUI.BackgroundColor
 
     ShowStatusWhenZero        = $true
@@ -130,9 +130,9 @@ if((Get-Variable -Scope Global -Name VcsPromptStatuses -ErrorAction SilentlyCont
     $Global:VcsPromptStatuses = @()
 }
 function Global:Write-VcsStatus { $Global:VcsPromptStatuses | foreach { & $_ } }
-
 # Add scriptblock that will execute for Write-VcsStatus
 $Global:VcsPromptStatuses += {
+
     $Global:GitStatus = Get-GitStatus
     Write-GitStatus $GitStatus
 }

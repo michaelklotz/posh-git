@@ -213,10 +213,9 @@ function GitTabExpansion($lastBlock) {
     }
 }
 
-$PowerTab_RegisterTabExpansion = Get-Command Register-TabExpansion -Module powertab -ErrorAction SilentlyContinue
-if ($PowerTab_RegisterTabExpansion)
+if (Get-Command "Register-TabExpansion" -errorAction SilentlyContinue)
 {
-    & $PowerTab_RegisterTabExpansion "git.exe" -Type Command {
+    Register-TabExpansion "git.exe" -Type Command {
         param($Context, [ref]$TabExpansionHasOutput, [ref]$QuoteSpaces)  # 1:
 
         $line = $Context.Line
